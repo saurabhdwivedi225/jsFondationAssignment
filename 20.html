@@ -1,0 +1,69 @@
+<!-- 20. Dynamically Adding List Items to an Ordered List
+
+Visit https://pwskills.com/course/Full-Stack-web-development/ page and look for “What you'll learn” section. 
+The section consists of a list of information on what you will be learning in the course. You are required to write a JavaScript program that stores a pre-existing array of list items. On each button click, the program should add a new list item in sequential order. The program should verify if any remaining items are available in the list item array and add the next item to the list accordingly. If no items are left, the function should display a message indicating that all items have been added.
+
+Solution:-   -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dynamic List Items</title>
+  <!-- CSS  -->
+  <style>
+   button{
+    background-color: #85dcb8;
+    border-radius: 10px;
+    padding: 10px 30px;
+}
+</style>
+ 
+</head>
+<body>
+  <h1>What You'll Learn</h1>
+  <ol id="course-list"></ol>
+  <button id="add-item-btn">Click for Add Item</button>
+  <!-- JavaScript -->
+  <script>
+    const courseList = document.getElementById("course-list");
+    const addItemButton = document.getElementById("add-item-btn");
+
+    // Pre-existing array of list items (adapt the content as needed)
+    const courseItems = [
+            "HTML and Semantics",
+           " Working Template ",
+           "Starting with CSS",
+           "Mobile responsive webpages",
+           "Grid and Flex-box in CSS",
+           "Projects using HTML & CSS",
+           "Version Control and Git",
+           "Getting Started with JavaScript",
+           "Advance JavaScript",
+           "Working with DOM",
+           "Making Projects using HTML, CSS and JavaScript",
+           "Understanding Fundamental of Computer Science",
+           "Getting Started with Database",
+           "Understanding the Database",
+           "Starting with NodeJS and Express",
+           "Understanding React and its Fundamentals",
+           "Understanding Hooks and Routers",
+           "Starting and Completing Full Fledge Projects",
+    ];
+
+    let currentItemIndex = 0; // Keeps track of the current item index
+
+    addItemButton.addEventListener("click", function() {
+      if (currentItemIndex < courseItems.length) {
+        const newListItem = document.createElement("li");
+        newListItem.textContent = courseItems[currentItemIndex];
+        courseList.appendChild(newListItem);
+        currentItemIndex++; // Increment the index for the next item
+      } else {
+        alert("All course items have been added!");
+      }
+    });
+  </script>
+</body>
+</html>
+

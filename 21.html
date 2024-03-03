@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TODO App</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    #todo-list {
+        list-style-type: none;
+        padding: 0;
+    }
+    #todo-list li {
+        margin-bottom: 10px;
+    }
+</style>
+</head>
+<body>
+
+<h2>TODO List</h2>
+
+<input type="text" id="todo-input" placeholder="Enter a new TODO">
+<button onclick="addTodo()">Add</button>
+
+<ul id="todo-list">
+    <!-- TODO items will be added here -->
+</ul>
+
+<script>
+function addTodo() {
+    var todoInput = document.getElementById("todo-input");
+    var todoText = todoInput.value.trim();
+    
+    if (todoText !== "") {
+        var todoList = document.getElementById("todo-list");
+        var listItem = document.createElement("li");
+        listItem.textContent = todoText;
+        todoList.appendChild(listItem);
+        
+        // Clear input field
+        todoInput.value = "";
+    } else {
+        alert("Please enter a TODO item.");
+    }
+}
+</script>
+
+</body>
+</html>

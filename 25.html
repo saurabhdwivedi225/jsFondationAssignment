@@ -1,0 +1,74 @@
+ <!-- 25. Move the Image
+
+The objective is to write a JavaScript program that enables an image to move according to the direction specified by the arrow keys. The program must be able to recognize and respond to the input from the arrow keys, and accordingly, update the position of the image on the screen. The program should be able to handle the movement of the image in all directions, including up, down, left, and right, in a smooth and responsive manner. Have a look at the event key codes before starting the project
+
+Solution:- -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Move Image with Arrow Keys</title>
+<style>
+  #container {
+    position:relative;
+    width: 1080px;
+    height: 468px;
+    border: 2px solid black;
+    background-color: #45caff;
+    overflow: hidden; /*To keep the image within the container */
+  }
+  #image {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background-color:#ff1b6b;
+  }
+</style>
+</head>
+<body>
+<div id="container">
+  <div id="image" ></div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const container = document.getElementById('container');
+    const image = document.getElementById('image');
+
+    let posX = 0;
+    let posY = 0;
+    const imageWidth = image.offsetWidth;
+    const imageHeight = image.offsetHeight;
+    const containerWidth = container.offsetWidth;
+    const containerHeight = container.offsetHeight;
+
+    function moveImage(direction) {
+      switch(direction) {
+        case 'ArrowUp':
+          posY = Math.max(posY - 10, 0); // Ensure posY doesn't go below 0
+          break;
+        case 'ArrowDown':
+          posY = Math.min(posY + 10, containerHeight - imageHeight); // Ensure posY doesn't exceed container height
+          break;
+        case 'ArrowLeft':
+          posX = Math.max(posX - 10, 0); // Ensure posX doesn't go below 0
+          break;
+        case 'ArrowRight':
+          posX = Math.min(posX + 10, containerWidth - imageWidth); // Ensure posX doesn't exceed container width
+          break;
+      }
+      image.style.top = posY + 'px';
+      image.style.left = posX + 'px';
+    }
+
+    document.addEventListener('keydown', function(event) {
+      const key = event.key;
+      if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(key)) {
+        moveImage(key);
+      }
+    });
+  });
+</script>
+</body>
+</html>

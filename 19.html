@@ -1,0 +1,117 @@
+<!-- 19. Validate Password
+
+You are building a login form for a website and need to validate user input using JavaScript. The form has two input fields: email and password, and a submit button.
+Your task is to implement JavaScript code that validates the email and password input fields. The email field should contain the "@" symbol. The password field should have a minimum length of 8 characters. If either of these conditions is not met, an error message “Invalid email or password!” should be displayed in red color as a paragraph text below the form. If the password is valid the message “Valid email and password!” must be displayed in green color as a paragraph text below the form.Your code should run when the user clicks the submit button and should prevent the form from submitting if the input is invalid. The input type of email must be text and the input type of password must be password without any minLength attribute specified.
+
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Validate Password</title>
+  <style>
+    *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgb(34,19,50); 
+        }
+            /* Designing div  */
+        div{
+            height: 330px;
+            width: 310px;
+            background: #553566;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            
+        }
+        input{
+            padding: 10px 50px;
+            margin:20px 30px;
+          
+                    }
+         h1{
+            margin-top:20px ;
+            font-size: 22px;
+            text-align: center;
+        }
+        #paragraph{
+            font-size: 15px;
+            margin-left: 15px;
+        }
+      
+        /* Designing button of login page  */
+        button{
+            border: none;
+            padding: 10px 50px;
+            margin:15px 90px;
+            color: white;
+            background: rgb(2, 126, 249);
+            cursor: pointer;
+        }
+        button:hover{
+          font-size: 10px;
+          background: #1a4bbd;
+        }
+      
+        
+  </style>
+</head>
+<body>
+    <div id="container">
+  <form id="myForm">
+    <h1>Login form</h1>
+    <input type="email" placeholder="Email" id="email">
+    <input type="password" placeholder="Password" id="password" minlength="8">
+    <button type="submit">Submit</button>
+    <p id="paragraph"></p>
+  </form>
+</div>
+  <script>
+    // Get references to form elements
+    const emailInput = document.getElementById("email");
+    const passwordInput = document.getElementById("password");
+    const submitButton = document.querySelector("button");
+    const paragraph = document.getElementById("paragraph");
+
+    // Attach event listener to submit button click
+    submitButton.addEventListener("click", function (event) {
+      event.preventDefault(); // Prevent default form submission
+
+      // Get email and password values
+      const emailValue = emailInput.value;
+      const passwordValue = passwordInput.value;
+
+      // Assume valid initially
+      let isValid = true;
+
+      // Check for valid email (including "@" symbol)
+      if (!emailValue.includes("@")) {
+        isValid = false;
+        paragraph.textContent = "Invalid email. Please enter a valid email address.";
+        paragraph.style.color = "red";
+      } else if (passwordValue.length < 8) { // Check for minimum password length
+        isValid = false;
+        paragraph.textContent = "Invalid password. Password must be at least 8 characters long.";
+        paragraph.style.color = "red";
+      }
+
+      // Display success message if valid
+      if (isValid) {
+        paragraph.textContent = "Valid email and password!";
+        paragraph.style.color = "green";
+        // Add your logic for form submission or processing here (e.g., send data to server)
+      }
+    });
+  </script>
+</body>
+</html>
